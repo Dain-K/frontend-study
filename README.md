@@ -287,5 +287,293 @@
   const fruits = ['Apple', 'Banana', 'Cherry']
   const a = fruits.findIndex(fruit => /^B/.test(fruit))
 ```
+## Array.prototype.includes()
+`includes()` 메서드는 배열이 특정 요소를 포함하고 있는지 판별
+```javascript
+  const numbers = [1,2,3,4]
+  const fruits = ['Apple', 'Banana', 'Cherry']
+  const a = numbers.includes(3)
+  console.log(a)
+  // 출력: true
+```
+## Array.prototype.push()
+`push()` 메서드는 배열의 끝에 하나 이상의 요소를 추가하고, 배열의 새로운 길이를 반환 
+- 배열의 가장 뒷 부분에 데이터를 삽입
+- 원본 수정 주의!!
+## Array.prototype.unshift()
+`unshift()` 메서드는 새로운 요소를 배열의 맨 앞쪽에 추가하고, 새로운 길이를 반환
+- 원본 수정 주의!!
+## Array.prototype.reverse()
+`reverse()` 메서드는 배열의 순서를 반전합니다. 첫 번째 요소는 마지막 요소가 되며 마지막 요소는 첫 번째 요소가 됨
+- 원본 수정 주의!!
+## Array.prototype.splice()
+`splice()` 메서드는 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경
+```javascript
+  const numbers = [1,2,3,4]
+  const fruits = ['Apple', 'Banana', 'Cherry']
+  numbers.splice(2, 1)
+  console.log(numbers)
+  // 출력: '(3) [1, 2, 4]'
+```
+```javascript
+  const numbers = [1,2,3,4]
+  const fruits = ['Apple', 'Banana', 'Cherry']
+  numbers.splice(2, 0, 999)
+  console.log(numbers)
+  // 출력: '(3) [1, 2, 999, 3, 4]'
+```
+</div>
+</details>
+
+<details>
+<summary> :pencil: 05. 객체  </summary>
+<div markdown="1">
+
+## Object.assign()
+`Object.assign()` 메서드는 출처 객체들의 모든 열거 가능한 자체 속성을 복사해 대상 객체에 붙여넣음
+- 매개변수
+  - target: 대상객체
+  - sources: 하나 이상의 출처 객체
+- 반환값: 대상의 객체
+```javascript
+  const userAge = {
+    // key: valu
+    name: 'Dain'
+    age: 85
+  }
+  const userEmail = {
+    name: 'Dain'
+    email: 'dksudi76@gmail.com'
+  }
+  
+  const target = Object.assign(userAge, userEmail) // 정적 메소드
+  console.log(target)
+  // 출력: {name: "Dain", age: 85, email: "dksudi76@gmail.com"}
+  console.log(userAge)
+  // 출력: {name: "Dain", age: 85, email: "dksudi76@gmail.com"}
+  console.log(target === userAge) // target과 userAge는 같은 메모리에 저장 되어 있으므로 true
+  // 출력: 'true'
+  
+```
+```javascript
+  const userAge = {
+    // key: valu
+    name: 'Dain'
+    age: 85
+  }
+  const userEmail = {
+    name: 'Dain'
+    email: 'dksudi76@gmail.com'
+  }
+  
+  const target = Object.assign({}, userAge, userEmail) // 정적 메소드
+  console.log(target)
+  // 출력: {name: "Dain", age: 85, email: "dksudi76@gmail.com"}
+  console.log(userAge)
+  // 출력: {name: "Dain", age: 85}
+  console.log(target === userAge) 
+  // 출력: 'false'
+  
+```
+## Object.keys()
+```javascript
+  const user = {
+    name: 'Dain'
+    age: 85,
+    email: 'dksudi76@gmail.com'
+  }
+  
+  const keys = Object.keys(user)
+  console.log(keys)
+  // 출력: (3) ["name", "age", "email"] 
+  
+  console.log(user['email'])
+  // 출력: dksudi76@gmail.com
+  
+  const values = keys.map(key => user[key])
+  console.log(valuses)
+  // 출력: (3) ["Dain", "85", "dksudi76@gmail.com"] 
+```
+</div>
+</details>
+
+<details>
+<summary> :pencil: 06. 구조 분해 할당  </summary>
+<div markdown="1">
+
+## 구조 분해 할당(Destructuring assignment)
+`구조분해할당` 구문은 배열이나 객체의 속성을 해체하여 그 값을 개별 변수에 담을 수 있게 하는 JavaScript 표현식
+- 비구조화 할당 문법
+```javascript
+  const user = {
+    name: 'Heropy',
+    age: 85,
+    email: 'dksudi76@gmail.com'
+  }
+  const {name, age, address} = user
+  // E.g, user.address
+  
+  console.log(`사용자의 이름은 ${name}입니다.')
+  console.log(`${name}의 나이는 ${age}세입니다.`)
+  console.log(`${name}의 이메일 주소는 ${user.email}입니다.`)
+  console.log(address)
+  // 출력: undefined
+  
+  const fruits = ['Apple', 'Banana', 'Cherry]
+  const [a,b,c,d] = fruits
+  console.log(a,b,c,d)
+  // 출력: Apple Banana Cherry undefined
+```
+## 기본값 지정 방법
+```javascript
+  const user = {
+    name: 'Heropy',
+    age: 85,
+    email: 'dksudi76@gmail.com'
+  }
+  const {name, age, address = 'Korea'} = user
+  // 주소가 없을 경우 기본값을 지정할 수 있음
+```
+## 변수 재선언 방법
+```javascript
+  const user = {
+    name: 'Heropy',
+    age: 85,
+    email: 'dksudi76@gmail.com'
+  }
+  const {name: heropy, age, address = 'Korea'} = user
+  onsole.log(`사용자의 이름은 ${heropy}입니다.')
+```
+## 원하는 값 출력
+순서대로 출력하기 때문에 `,`를 적어주어야 함
+```javascript
+  const fruits = ['Apple', 'Banana', 'Cherry]
+  const [,b] = fruits 
+  console.log(b)
+  // 출력: Banana
+```
+</div>
+</details>
+
+<details>
+<summary> :pencil: 07. 전개 연산자  </summary>
+<div markdown="1">
+
+## 전개연산자(Spread)
+```javascript
+  const fruits = ['Apple', 'Banana', 'Cherry']
+  console.log(fruits) 
+  // 출력: (3) ["Apple", "Banana", "Cherry"]
+  console.log(...frults)
+  // 출력: Apple Banana Cherry
+  
+  function toObject(a, b, c) {
+    return {
+      a: a,
+      b: b,
+      c: c
+    }
+  }
+  console.log(toObject(...fruits))
+  // 출력: {a: "Apple", b: "Banana", c: "Cherry"}
+```
+## 배열에 새로운 값이 추가될 경우
+```javascript
+  const fruits = ['Apple', 'Banana', 'Cherry', 'Orange']
+  console.log(fruits) 
+  // 출력: (3) ["Apple", "Banana", "Cherry". "Orange"]
+  console.log(...frults)
+  // 출력: Apple Banana Cherry Orange
+  
+  function toObject(a, b, ...c) { // 매개변수 c가 나머지 값을 다 받아냄: rest parameter
+    return {
+      a: a,
+      b: b,
+      c: c
+    }
+  }
+  console.log(toObject(...fruits))
+  // 출력: {a: "Apple", b: "Banana", c: Array(2)}
+```
+
+## 축약형
+데이터와 변수의 이름이 같을 경우
+```javascript
+  const fruits = ['Apple', 'Banana', 'Cherry', 'Orange']
+  cosnt toObject = (a, b, ...c) => ({a, b, c})
+  console.log(toObject(...fruits))
+```
+</div>
+</details>
+
+<details>
+<summary> :pencil: 08. 불번성  </summary>
+<div markdown="1">
+
+## 데이터 불변성(Immutavility)
+- 원시 데이터: String, Number, Boolean, undefined, null
+- 참조형 데이터: Object, Array, Function
+- 참조형 데이터: Object, Array, Function
+</div>
+</details>
+
+<details>
+<summary> :pencil: 09. 얕은 복사와 깊은 복사  </summary>
+<div markdown="1">
+
+## 같은 메모리 주소 할당
+```javascipt
+  const user = {
+    name: 'Heropy',
+    age: 85,
+    emails: ['dksudi76@gmail.com']
+  }
+  const copyUser = user // 같은 메모리 주소 할당
+  console.log(copyUser === user)
+  // 출력: true
+  
+  user.age = 22
+  console.log('user', user)
+  // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
+  conole.log('copyUser', copyUser)
+  // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
+  // 같은 메모리를 할당 받으므로 두개 모두 값이 바뀜
+```
+## 다른 메모리 주소 할당
+방법 :one:
+```javascipt
+  const user = {
+    name: 'Heropy',
+    age: 85,
+    emails: ['dksudi76@gmail.com']
+  }
+  const copyUser = Object.assign({}, user) // 새로운 객체데이터가 새로운 메모리에 할당
+  console.log(copyUser === user)
+  // 출력: false
+  
+  user.age = 22
+  console.log('user', user)
+  // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
+  conole.log('copyUser', copyUser)
+  // 출력: {name: 'Heropy',  age: 85, emails: Arrays(1)}
+```
+방법 :two: - `얕은복사`
+```javascipt
+  const user = {
+    name: 'Heropy',
+    age: 85,
+    emails: ['dksudi76@gmail.com']
+  }
+  const copyUser ={...user}
+  console.log(copyUser === user)
+  // 출력: false
+  
+  user.age = 22
+  console.log('user', user)
+  // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
+  conole.log('copyUser', copyUser)
+  // 출력: {name: 'Heropy',  age: 85, emails: Arrays(1)}
+```
+
 </div>
 </details>
