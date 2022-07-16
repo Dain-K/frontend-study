@@ -522,7 +522,7 @@
 <div markdown="1">
 
 ## 같은 메모리 주소 할당
-```javascipt
+```javascript
   const user = {
     name: 'Heropy',
     age: 85,
@@ -541,7 +541,7 @@
 ```
 ## 다른 메모리 주소 할당
 방법 :one:
-```javascipt
+```javascript
   const user = {
     name: 'Heropy',
     age: 85,
@@ -558,13 +558,13 @@
   // 출력: {name: 'Heropy',  age: 85, emails: Arrays(1)}
 ```
 방법 :two: - `얕은복사`
-```javascipt
+```javascript
   const user = {
     name: 'Heropy',
     age: 85,
     emails: ['dksudi76@gmail.com']
   }
-  const copyUser ={...user}
+  const copyUser = {...user}
   console.log(copyUser === user)
   // 출력: false
   
@@ -574,6 +574,128 @@
   conole.log('copyUser', copyUser)
   // 출력: {name: 'Heropy',  age: 85, emails: Arrays(1)}
 ```
+방벙 :three: - `깊은복사(Deep copy)`<br>
+깊은 복사를 사용하기 위해서는 `lodash`를 이용
+- 재귀적으로 모든 함수를 복사
+1. lodash 설치
+터미널(zsh)에서 아래의 코드 실행
+```javascript
+  npm i lodash
+```
+2. 개발서버 열기
+```javascript
+  npm run dev
+```
+3. package.json
+lodash가 설치된 것을 확인 가능
+```javascript
+  "dependecies": {
+    "lodash": "^4.17.21"
+  }
+```
+4. main.js에서 lodash 이용하기
+```javascript
+  import _ from 'lodash'
+  const user = {
+    name: 'Heropy',
+    age: 85,
+    emails: ['dksudi76@gmail.com']
+  }
+  const copyUser = _.cloneDeep(user)
+  console.log(copyUser === user)
+  // 출력: false
+  
+  user.age = 22
+  console.log('user', user)
+  // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
+  conole.log('copyUser', copyUser)
+  // 출력: {name: 'Heropy',  age: 85, emails: Arrays(1)}
+```
+</div>
+</details>
+
+### :file_folder: ch2. JS 데이터 실습
+<details>
+<summary> :pencil: 01. 가져오기, 내보내기  </summary>
+<div markdown="1">
+
+#### import 키워드를 통해 외부의 js를 불러오기
+## 내보내기 통로 `2개`
+#### :clipboard: `Default export`: 이름 없이 내보내기 
+  - default 키워드 적어주기
+  - 데이터 이름을 따로 적어주지 않아도 된다.
+  - 하나의 함수만 작성되어야 한다.
+  ```javascript
+    export default function random()
+  ```
+  위와 같이 함수 이름을 정의할 경우 아래와 같이 작성 가능
+  ```javascript
+    export default function ()
+  ```
+#### :clipboard: `Named export`
+  - 여러개의 함수를 작성할 수 있음
+  ```javascript
+    export function random() {}
+    export const user = {}
+  ```
+  import로 불러올 경우 아래와 같이 정의해야함
+  ```javascript
+    import {random, user as 원하는 이름} from './파일명'
+  ```
+  한번에 불러오고 싶은 경우
+  ```javascript
+    import * as R from './파일명'
+  ```
+</div>
+</details>
+
+<details>
+<summary> :pencil: 02. Lodash 사용법  </summary>
+<div markdown="1">
+
+## 중복 없이 배열 합치기
+#### :clipboard: `uniqBy`
+배열이 하나일 때 사용
+#### :clipboard: `unionBy`
+배열이 두개일 때 사용
+```javascript
+  import _ from 'lodash'
+  const usersA = [
+    {userId: '1', name: 'Dain'},
+    {userId: '2', name: 'Neo'}
+  ]
+  // 배열 안에 2개의 객체 데이터 생성
+  const usersB = [
+    {userId: '1', name: 'Dain'},
+    {userId: '3', name: 'Kevin'}
+  ]
+  const usersC = usersA.concat(usersB) // 2개의 배열 데이터를 합쳐 새로운 배열 생성
+  console.log('concat', usersC) // 4개의 데이터, 중복 데이터 포함
+  console.log('uniqBy', _.uniqBy(usersC, 'userId')) // 중복 데이터 userId로 구분
+  
+  const usersD = _.unionBy(usersA, usersB, 'userId')
+  console.log('uniqBy', usersD)
+```
+</div>
+</details>
+
+<details>
+<summary> :pencil: 03. JSON  </summary>
+<div markdown="1">
+
+</div>
+</details>
+
+<details>
+<summary> :pencil: 04. Storage  </summary>
+<div markdown="1">
+
+</div>
+</details>
+
+<details>
+<summary> :pencil: 05. OMDb API  </summary>
+<div markdown="1">
 
 </div>
 </details>
