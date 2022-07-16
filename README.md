@@ -622,30 +622,30 @@ lodash가 설치된 것을 확인 가능
 #### import 키워드를 통해 외부의 js를 불러오기
 ## 내보내기 통로 `2개`
 #### :clipboard: `Default export`: 이름 없이 내보내기 
-  - default 키워드 적어주기
-  - 데이터 이름을 따로 적어주지 않아도 된다.
-  - 하나의 함수만 작성되어야 한다.
-  ```javascript
-    export default function random()
-  ```
-  위와 같이 함수 이름을 정의할 경우 아래와 같이 작성 가능
-  ```javascript
-    export default function ()
-  ```
+- default 키워드 적어주기
+- 데이터 이름을 따로 적어주지 않아도 된다.
+- 하나의 함수만 작성되어야 한다.
+```javascript
+  export default function random()
+```
+위와 같이 함수 이름을 정의할 경우 아래와 같이 작성 가능
+```javascript
+  export default function ()
+```
 #### :clipboard: `Named export`
-  - 여러개의 함수를 작성할 수 있음
-  ```javascript
-    export function random() {}
-    export const user = {}
-  ```
-  import로 불러올 경우 아래와 같이 정의해야함
-  ```javascript
-    import {random, user as 원하는 이름} from './파일명'
-  ```
-  한번에 불러오고 싶은 경우
-  ```javascript
-    import * as R from './파일명'
-  ```
+- 여러개의 함수를 작성할 수 있음
+```javascript
+  export function random() {}
+  export const user = {}
+```
+import로 불러올 경우 아래와 같이 정의해야함
+```javascript
+  import {random, user as 원하는 이름} from './파일명'
+```
+한번에 불러오고 싶은 경우
+```javascript
+  import * as R from './파일명'
+```
 </div>
 </details>
 
@@ -653,28 +653,55 @@ lodash가 설치된 것을 확인 가능
 <summary> :pencil: 02. Lodash 사용법  </summary>
 <div markdown="1">
 
-## 중복 없이 배열 합치기
 #### :clipboard: `uniqBy`
 배열이 하나일 때 사용
 #### :clipboard: `unionBy`
 배열이 두개일 때 사용
 ```javascript
-  import _ from 'lodash'
-  const usersA = [
-    {userId: '1', name: 'Dain'},
-    {userId: '2', name: 'Neo'}
-  ]
-  // 배열 안에 2개의 객체 데이터 생성
-  const usersB = [
-    {userId: '1', name: 'Dain'},
-    {userId: '3', name: 'Kevin'}
-  ]
-  const usersC = usersA.concat(usersB) // 2개의 배열 데이터를 합쳐 새로운 배열 생성
-  console.log('concat', usersC) // 4개의 데이터, 중복 데이터 포함
-  console.log('uniqBy', _.uniqBy(usersC, 'userId')) // 중복 데이터 userId로 구분
+import _ from 'lodash'
+
+const usersA = [
+  {userId: '1', name: 'Dain'},
+  {userId: '2', name: 'Neo'}
+]
+// 배열 안에 2개의 객체 데이터 생성
+const usersB = [
+  {userId: '1', name: 'Dain'},
+  {userId: '3', name: 'Kevin'}
+]
+const usersC = usersA.concat(usersB) // 2개의 배열 데이터를 합쳐 새로운 배열 생성
+console.log('concat', usersC) // 4개의 데이터, 중복 데이터 포함
+console.log('uniqBy', _.uniqBy(usersC, 'userId')) // 중복 데이터 userId로 구분
+
+const usersD = _.unionBy(usersA, usersB, 'userId')
+console.log('uniqBy', usersD)
+```
+<hr>
   
-  const usersD = _.unionBy(usersA, usersB, 'userId')
-  console.log('uniqBy', usersD)
+#### :clipboard: `find`
+특정 객체 데이터 찾기
+#### :clipboard: `findIndex`
+특정 객체 데이터 인덱스 찾기
+#### :clipboard: `remove`
+특정 객체 데이터 삭제
+```javascript
+import _ from 'lodash'
+
+const users = [
+  {userId: '1', name: 'Dain'},
+  {userId: '2', name: 'Neo'},
+  {userId: '3', name: 'Amy'},
+  {userId: '4', name: 'Kevin'},
+  {userId: '5', name: 'Bab'},
+]
+
+const foundUser = _.find(users, {name: 'Amy'})
+const foundUserIndex = _.findIndex(users, {name: 'Amy'})
+console.log(foundUser) // 출력: {userId: '3', name: 'Amy'}
+console.log(foundUserIndex) // 출력: 2
+
+_.remove(users, {name: 'Dain'})
+console.log(users) // 출력: (4)
 ```
 </div>
 </details>
@@ -682,7 +709,52 @@ lodash가 설치된 것을 확인 가능
 <details>
 <summary> :pencil: 03. JSON  </summary>
 <div markdown="1">
+#### 하나의 문자 데이터
+## package.json 
+- 구성옵션을 만들어서 관리
+- 하나의 데이터처럼 관리하기 위해 구성옵션 json 형태로 관리
+#### :clipboard: 파일 생성
+```javascript
+npm init -y
+#### 📋 JSON 사용
+`myData.json`
+```javascript
+{
+  "string": "Dain",
+  "number": 123,
+  "boolean": true,
+  "null": null
+  "object": {},
+  "array": []
+}
+```
 
+## 자바스트립트의 객체 표기법
+#### 📋 JSON.stringify
+문자 데이터화 시켜줌 - JSON화 시켜줌
+#### 📋 JSON.parse
+자바스크립트화 시켜줌
+```javascript
+import myData from "./myData.json"
+// 문자 데이터가 자동으로 포멧되어 객체데이터로 사용가능
+  
+const user = {
+  name: 'Dain', // 속성 부분에 'name'로 작성해도 무관
+  age: 85,
+  emails: [
+    'dksudi76@gmail.com',
+    'neo@gmail.com'
+  ]
+}
+console.log('user', user)
+
+const str = JSON.stringify(user)
+console.log('str', str)
+console.log(typeof str) // 출력: string
+
+const obj = JSON.parse(str)
+console.log('obj', obj)
+```
 </div>
 </details>
 
