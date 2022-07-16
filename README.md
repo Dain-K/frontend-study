@@ -352,9 +352,9 @@
   console.log(userAge)
   // 출력: {name: "Dain", age: 85, email: "dksudi76@gmail.com"}
   console.log(target === userAge) // target과 userAge는 같은 메모리에 저장 되어 있으므로 true
-  // 출력: 'true'
-  
+  // 출력: 'true' 
 ```
+  
 ```javascript
   const userAge = {
     // key: valu
@@ -507,7 +507,7 @@
 </details>
 
 <details>
-<summary> :pencil: 08. 불번성  </summary>
+<summary> :pencil: 08. 불변성  </summary>
 <div markdown="1">
 
 ## 데이터 불변성(Immutavility)
@@ -709,6 +709,7 @@ console.log(users) // 출력: (4)
 <details>
 <summary> :pencil: 03. JSON  </summary>
 <div markdown="1">
+  
 #### 하나의 문자 데이터
 ## package.json 
 - 구성옵션을 만들어서 관리
@@ -716,6 +717,7 @@ console.log(users) // 출력: (4)
 #### :clipboard: 파일 생성
 ```javascript
 npm init -y
+```
 #### 📋 JSON 사용
 `myData.json`
 ```javascript
