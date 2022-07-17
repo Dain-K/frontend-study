@@ -764,6 +764,57 @@ console.log('obj', obj)
 <summary> :pencil: 04. Storage  </summary>
 <div markdown="1">
 
+#### `local storage mdn` 검색
+위 사이트에서 관련 정보 확인 가능
+## Window.localStorage
+`localStorage`의 데이터는 만료되지 않고 `sessionStorage`의 데이터는 페이지 세션이 끝날 때, 즉 페이지를 닫을 때 사라짐
+- 저장 시 모두 문자데이터로 변환하여 작성해야함
+#### 📋 Storage.setItem()
+브라우저 storage에 데이터 저장
+```javascript
+localStorage.setItem('myCat', 'Tom');
+// myCat: key, Tom: value
+```
+#### 📋 Storage.getItem()
+localStorage의 항목 읽기
+```javascript
+const cat = localStorage.getItem('myCat');
+```
+#### 📋 Storage.removeItem()
+localStorage의 항목 제거하기
+```javascript
+localStorage.removeItem('myCat');
+```
+#### 📋 예제
+```javascript
+const user = {
+  name: 'Dain',
+  age: 85,
+  emails: [
+    'dksudi76@gmail.com',
+    'neo@gmail.com'
+  ]
+}
+localStorage.setItem('user', JSON.stringify(user)) // 문자데이터로 변환해주어야 함
+console.log(localStorege.getItem('user')) 
+console.log(JSON.parse(localStorage.getItem('user'))) // 데이터를 사용하기 위해서는 js데이터로 변환해주어야 함
+```
+#### 📋 예제2: 내용 수정
+```javascript
+const user = {
+  name: 'Dain',
+  age: 85,
+  emails: [
+    'dksudi76@gmail.com',
+    'neo@gmail.com'
+  ]
+}
+const str = localStorege.getItem('user')
+const obj = JSOM.parse(str)
+obj.age = 22
+localStorage.setItem('user', JSON.stringify(obj))
+```
+[참고] 구글검색: lowdb 깃허브 저장소
 </div>
 </details>
 
@@ -771,5 +822,15 @@ console.log('obj', obj)
 <summary> :pencil: 05. OMDb API  </summary>
 <div markdown="1">
 
+## Query String
+`주소?속성=값&속성=값&속성=값`    
+- 기본적인 웹페이지에 대한 옵션을 적는 법
+- frozen은 영화의 정보를 나타냄
+```
+http://www.ondbapi.com/?apikey=7035c60c&s=frozen
+```
+#### :key: 이를 main.js에서 활용하기 위해 `axios 패키지`f를 이용하면 된다.
+## axios 패키지
+HTTP를 처리해주는 js 패키지
 </div>
 </details>
