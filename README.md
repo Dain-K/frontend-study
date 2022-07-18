@@ -827,10 +827,25 @@ localStorage.setItem('user', JSON.stringify(obj))
 - 기본적인 웹페이지에 대한 옵션을 적는 법
 - frozen은 영화의 정보를 나타냄
 ```
-http://www.ondbapi.com/?apikey=7035c60c&s=frozen
+https://www.omdbapi.com/?apikey=7035c60c&s=frozen
 ```
 #### :key: 이를 main.js에서 활용하기 위해 `axios 패키지`f를 이용하면 된다.
 ## axios 패키지
 HTTP를 처리해주는 js 패키지
+```javascript
+import axios from 'axios'
+
+function fetchMovies() {
+  axios
+    .get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+    .then((res) => {
+      console.log(res)
+      const h1El = document.querySelector('h1')
+      const imgEl = document.querySelector('img')
+      h1El.textContent = res.data.Search[0].Title
+    })
+}
+fetchMovies()
+```
 </div>
 </details>
