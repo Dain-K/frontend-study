@@ -832,20 +832,59 @@ https://www.omdbapi.com/?apikey=7035c60c&s=frozen
 #### :key: 이를 main.js에서 활용하기 위해 `axios 패키지`f를 이용하면 된다.
 ## axios 패키지
 HTTP를 처리해주는 js 패키지
+```html
+<body>
+  <img src="" alt="" width="200">
+</body>
+```
 ```javascript
 import axios from 'axios'
 
 function fetchMovies() {
   axios
-    .get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
-    .then((res) => {
+    .get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen') // 데이터 요청
+    .then(res => {
       console.log(res)
       const h1El = document.querySelector('h1')
       const imgEl = document.querySelector('img')
       h1El.textContent = res.data.Search[0].Title
+      imgEl.src = res.data.Search[0].Poster
     })
 }
 fetchMovies()
 ```
+</div>
+</details>
+
+### :file_folder: ch3. 정규표현식
+<details>
+<summary> :pencil: 01. 개요 및 프로젝트 시작  </summary>
+<div markdown="1">
+
+## 기본 설정
+#### :one: `REGEXP` 폴더 생성
+#### :two: 터미널 코드 입력
+```javascript
+npm init -y
+```
+```javascript
+npm i parcel-bundler -D
+```
+오류가 발생할 경우 버전 낮추기
+```javascript
+npm i parcel-bundler1.12.3-D
+```
+#### :three: 파일 생성
+- index.html
+```html
+```
+- main.js
+</div>
+</details>
+  
+<details>
+<summary> :pencil: 02. 정규식 생성  </summary>
+<div markdown="1">
+  
 </div>
 </details>
