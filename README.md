@@ -864,8 +864,28 @@ fetchMovies()
 ## 기본 설정
 #### :one: `REGEXP` 폴더 생성
 #### :two: 터미널 코드 입력
+- package.json 파일 생성
 ```javascript
 npm init -y
+```
+- package.json 파일 내용 변경
+```javascript
+{
+  "name": "regexp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "bulid": "parcel bulid index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
 ```
 ```javascript
 npm i parcel-bundler -D
@@ -877,6 +897,19 @@ npm i parcel-bundler1.12.3-D
 #### :three: 파일 생성
 - index.html
 ```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./main.js"></script>
+</head>
+<body>
+    <h1>Hello RegExp</h1>
+</body>
+</html>
 ```
 - main.js
 </div>
@@ -885,6 +918,46 @@ npm i parcel-bundler1.12.3-D
 <details>
 <summary> :pencil: 02. 정규식 생성  </summary>
 <div markdown="1">
-  
+
+## 정규표현식(RegExp)이란
+문자열을 검색하고 대체하는데 사용가능한 일종의 형식 언어(패턴)
+- 정규식, Regular Expression
+- 간단한 문자 검색부터 이메일, 패스워드 검사 등의 복잡한 문자 일치 기능 등을 정규식 패턴으로 빠르게 수행 가능
+## 정규표현식 역할
+:one: 문자 검색(search) <br>
+:two: 문자 대체(replace) <br>
+:three: 문자 추출(extract) <br>
+
+## 정규표현식 테스트 사이트
+:mailbox: https://regexr.com/  <br>
+[중요] 테스트 환경이 JavaScript 인지 확인해야한다.
+## 자바스크립트 정규식 생성
+```javascript
+// 생성자
+new RegExp('표현', '옵션')
+new RegExp('[a-z]', 'gi')
+
+// 리터럴
+/표현/옵션
+/[a-z]/gi
+```
+### 📋 생성자 함수 방식
+`RegExp` 생성자 함수를 호출하여 사용 가능
+```javascript
+const regexp1 = new RegExp("^abc");
+// new RegExp(표현식);
+
+const regexp2 = new RegExp("^abc", "gi");
+// new RegExp(표현식, 플래그);
+```
+### 📋 리터럴(Literal) 방식
+정규표형식은 `/`로 감싸진 패턴을 리터럴로 사용
+```javascript
+const regexp1 = /^abc/;
+// /표현식/
+
+const regexp2 = /^abc/ge;
+// /표현식/플래그
+```
 </div>
 </details>
