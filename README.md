@@ -950,6 +950,23 @@ const regexp1 = new RegExp("^abc");
 const regexp2 = new RegExp("^abc", "gi");
 // new RegExp(표현식, 플래그);
 ```
+#### 📋 연습
+- main.js
+```javascript
+const str = `
+010-1234-5678
+thesecon@gmail.com
+https://www.omdbapi.com/?apikey=7035c60c&s=frozen
+ghe quick brown fox jumps over the lazy dog.
+abbcccdddd
+`
+
+const regexp = new RegExp('the', 'g') // the가 몇개 포함되어 있는지 찾음
+console.log(str.match(regexp)) // 출력: (2) ["the", "the"]
+
+const regexp1 = new RegExp('the', 'gi') 
+console.log(str.match(regexp1)) // 출력: (3) ["the", "The", "the"]
+```
 ### 📋 리터럴(Literal) 방식
 정규표형식은 `/`로 감싸진 패턴을 리터럴로 사용
 ```javascript
@@ -959,5 +976,193 @@ const regexp1 = /^abc/;
 const regexp2 = /^abc/ge;
 // /표현식/플래그
 ```
+#### 📋 연습
+- main.js
+```javascript
+const str = `
+010-1234-5678
+thesecon@gmail.com
+https://www.omdbapi.com/?apikey=7035c60c&s=frozen
+ghe quick brown fox jumps over the lazy dog.
+abbcccdddd
+`
+
+const regexp = /the/gi
+console.log(str.match(regexp))
+```
+</div>
+</details>
+
+<details>
+<summary> :pencil: 03. 메소드  </summary>
+<div markdown="1">
+
+#### 📋 정규표현식을 다루는 다양한 메소드(methods)들
+<table>
+  <tr>
+    <td>메소드</td>
+    <td>문법</td>
+    <td>설명</td>
+  </tr>
+  <tr>
+    <td>exec</td>
+    <td>정규식.exec(문자열)</td>
+    <td>일치하는 하나의 정보(Array) 반환</td>
+  </tr>
+  <tr>
+    <td>test</td>
+    <td>정규식.test(문자열)</td>
+    <td>일치 여부(Boolean) 반환</td>
+  </tr>
+  <tr>
+    <td>match</td>
+    <td>문자열.match(정규식)</td>
+    <td>일치하는 문자열의 배열 반환</td>
+  </tr>
+  <tr>
+    <td>search</td>
+    <td>문자열.search(정규식)</td>
+    <td>일치하는 문자열의 인덱스(Number) 반환</td>
+  </tr>
+  <tr>
+    <td>replace</td>
+    <td>문자열.replace(정규식, 대체문자)</td>
+    <td>일치하는 문자열을 대체하고 대체된 문자열(String) 반환</td>
+  </tr>
+</table>
+#### 📋 예제코드1
+```javascript
+const str = ` 
+010-1234-5678
+thesecon@gmail.com
+https://www.omdbapi.com/?apikey=7035c60c&s=frozen
+ghe quick brown fox jumps over the lazy dog.
+abbcccdddd
+`
+
+const regexp = /fox/gi
+console.log(regexp.test(str)) // 출력: true
+console.log(str.replace(regexp, 'AAA')) // 새로운 단어로 대체
+console.log(str) // const는 재할당 불가
+```
+#### 📋 예제코드2
+```javascript
+let str = ` 
+010-1234-5678
+thesecon@gmail.com
+https://www.omdbapi.com/?apikey=7035c60c&s=frozen
+ghe quick brown fox jumps over the lazy dog.
+abbcccdddd
+`
+
+const regexp = /fox/gi
+str = str.replace(regexp, 'AAA')
+console.log(str) // let 재할당 가능
+```
+</div>
+</details>
+
+<details>
+<summary> :pencil: 04. 플래그(옵션)  </summary>
+<div markdown="1">
+
+## 플래그(옵션)
+
+플래그 | 설명
+--|--
+g | 모든 문자 일치(global)
+i | 영어 대소문자를 구분 않고 일치(ignore case)
+m | 여러 줄 일치(multi line)
+#### 📋 이스케이프 문자(Escape Charecter)
+`백슬래시 기호`를 통해 본래의 기능에서 벗어나 상태가 바뀌는 문자를 말함
+
+```javascript
+let str = ` 
+010-1234-5678
+thesecon@gmail.com
+https://www.omdbapi.com/?apikey=7035c60c&s=frozen
+ghe quick brown fox jumps over the lazy dog.
+abbcccdddd
+`
+
+console.log(str.match(/\.$/gim)) // m을 추가하면 각각의 줄에서 끝나는 온점이 있는지 찾음
+```
+</div>
+</details>
+
+<details>
+<summary> :pencil: 05. 패턴(표현)  </summary>
+<div markdown="1">
+
+## 패턴(표현)
+
+패턴 | 설명
+:--:|--
+^ab | 줄(Line) 시작에 있는 ab와 일치
+ab$ | 줄(Line) 끝에 있는 ab와 일치
+. | 임의의 한 문자와 일치
+a&verbar;b | a 또는 b와 일치
+ab? | b가 없거나 b와 일치
+{3} | 3개 연속 일치
+{3,} | 3개 이상 연속 일치
+{3, 5} | 3개 이상 5개 이하(3~5개) 연속 일치
+[abc] |a 또는 b 또는 c
+[a-z] | a부터 z 사이의 문자 구간에 일치(영어 소문자)
+[A-Z] | A부터 Z 사이의 문자 구간에 일치(영어 대문자)
+[0-9] | 0부터 9 사이의 문자 구간에 일치(숫자)
+[가-힣] | 가부터 힣 사이의 문자 구간에 일치(한글)
+\w | 63개 문자(Word, 대소영문 52개 + 숫자10개 + _)에 일치
+\b | 63개 문자에 일치하지 않는 문자 경계(Boundary)
+\d | 숫자(Digit)에 일치
+\s | 공백(Space, Tab 등)에 일치
+(?=) | 앞쪽 일치(Lookahead)
+(?<=) | 뒤쪽 일치(Lookbehind)
+
+#### 📋 예제
+```javascript
+let str = ` 
+010-1234-5678
+thesecon@gmail.com
+https://www.omdbapi.com/?apikey=7035c60c&s=frozen
+ghe quick brown fox jumps over the lazy dog.
+abbcccdddd
+http://localhost:1234`
+
+console.log(str.match(/d$/g)) // 출력: false
+console.log(str.match(/d$/gm)) // 출력: (1) ["d"]
+console.log(str.match(/^t/gim)) // 대문자 소문자 가리지 않고 찾기
+console.log(str.match(/h..p/g))  // 출력: (1) ["https"]
+console.log(str.match(/fox|dog/)) // 먼저 찾아 지는 것만 반환
+console.log(str.match(/https?/g)) // 출력: (2) ["https", "http"]
+
+console.log(str.match(/d{2}/g) // 출력: ['dd']
+console.log(str.match(/d{2,}/g) // 출력: ['dddd']
+console.log(str.match(/\b\w{2,3}\b/g) // 기호를 기준으로 2개에서 3개인 숫자와 문자를 찾음
+
+console.log(
+  str.match(/[0-9]{1,}/g) // 문자 데이터에 있는 연속되는 모든 숫자를 구분해서 출력
+)
+
+console.log(
+  str.match(/\bf\w{1,}\b/g) // f로 시작하는 모든 단어를 찾음
+}
+
+const h = `  the hello  world    !
+
+`
+// 문자에서 모든 공백이 사라지게 만들어줌
+console.log(
+  h.replace(/\s/g, '') 
+)
+```
+
+// 앞쪽 일치 패턴
+console.log(
+  str.match(/.{1,7}(?=@)/g) // 출력: ["dksudi76"]
+)
+// 뒤쪽 일치 패턴
+console.log(
+  str.match(/(?<=@).{1,7}/g) // 출력: ["gmail.com"]
+)
 </div>
 </details>
