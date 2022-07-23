@@ -1154,7 +1154,7 @@ const h = `  the hello  world    !
 console.log(
   h.replace(/\s/g, '') 
 )
-```
+
 
 // 앞쪽 일치 패턴
 console.log(
@@ -1164,5 +1164,6 @@ console.log(
 console.log(
   str.match(/(?<=@).{1,7}/g) // 출력: ["gmail.com"]
 )
+```
 </div>
 </details>
