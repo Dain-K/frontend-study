@@ -104,5 +104,135 @@ console.log(Symbol('foo'));
 ## 📋 Undefined & Null
 - Undefined와 Null은 실제로 각각 undefined 와 null이라는 타입을 가짐
 - 둘다 소문자만 있음
+```typescript
+// let Myname: string = null;
+// tsconfig.json 에 strict를 주석처리하면 가능
+
+// let u: undefined = null;
+let v: void = undefined;
+
+
+// 아래와 같이 표기해야 사용 가능
+let union: string | null = null;
+
+union = "Mark";
+```
+
+#### :pushpin: null in js
+- null 타입은 null 값만 가질 수 있음
+- 런타임에서 typeof 연산자를 이용해서 알아내면, `object` 이다.
+#### :pushpin: undefined in js
+- 값을 할당하지 않은 변수는 undefined 값을 가짐
+- object의 property가 없을 때도 undefined
+-런타임에서 typeof 연산자를 이용해서 알아내면, `undefined` 이다.
+
+## 📋 object
+- "primitive type 이 아닌 것"을 나타내고 싶을 때 사용하는 타입
+```typescript
+const person1 = { name: "Mark", age: 27 };
+
+const person2 = Object.create({name: 'Mark', age: 39});
+
+let obj: object = {};
+obj = {name: "Mark"};
+```
+## 📋 array
+```typescript
+let list: number[] = [1, 2, 3];
+let list1: (number | string)[] = [1, 2, 3, "4"];
+
+let list2: Array<number> = [1, 2, 3];
+```
+## 📋 tuple
+```typescript
+let x: [string, number];
+
+x = ["hello", 39];
+// 선언과 순서도 같고 길이도 같아야 함
+
+// x = [10, "Mark"]; // 에러
+
+const person: [string, number] = ["Mark", 39];
+
+const [first, second] = person;
+
+// const [first, second, third] = person;// 에러
+
+```
+## 📋 any
+- 어떤 타입이어도 상관없음
+- 최대한 쓰지 않는 것이 좋음
+- 왜냐면 컴파일 타임에 타입 체크가 정상적으로 이루어지지 않기 때문
+- any를 써야하는데 쓰지 않으면 오류를 뱉도록 하는 옵션: `nolmplicitAny`
+```typescript
+function returnAny(message: any): any {
+    console.log(message);
+}
+
+const any1 = returnAny("리턴은 아무거나");
+
+any1.toString(); // 어떤 타입이든 상관 없음
+```
+- any는 계속해서 개체를 통해 전파
+- 모든 편의는 타입 안정성을 잃는 대가로 온다
+```typescript
+let looselyTyped: any = {};
+
+const d = looselyTyped.a.b.c.d;
+```
+## 📋 unknown
+- any와 짝으로 any보다 type-safe 한 타입
+- any와 같이 아무거나 할당할 수 있음
+- 타입을 정해주지 않으면 다른 곳에 할당할 수 없고, 사용할 수 없음
+- runtime error를 줄일 수 있음
+```typescript
+declare const maybe: unknown;
+// const aNumber: number = maybe;
+// unknown 형식은 바로 할당할 수 없음
+
+// type을 한정시켜야 사용할 수 있음
+// any 였으면 if 문 선언없이 사용가능
+if(maybe === true) {
+    const aBoolean: boolean =  maybe;
+    // const aString: string = maybe;
+}
+
+if(typeof maybe === 'string'){
+    const aString: string = maybe;
+    // const aBoolean: boolean =  maybe;
+}
+```
+## 📋 never
+- 모든 타입의 subtype
+- 모든 타입에 할당할 수 있음
+- 하지만, never에는 그 어떤 것도 할당할 수 없음
+- any 조차 never에게 할당할 수 없음
+- 잘못된 타입을 넣는 실수를 막고자할 때 사용하기도 함
+```typescript
+function error(message: string): never{
+    throw new Error(message);
+}
+
+function fail() {
+    return error("failed");
+}
+
+function infiniteLoop(): never {
+    while(true){
+
+    }
+}
+
+let a: string = "hello";
+declare let b: string | number;
+
+if(typeof a !== 'string') {
+    a; // a: never
+}
+
+type Indexable<T> = T extends string ? T & { [index: string]: any } :never;
+
+// const c: Indexable<{}> = '';
+```
 </div>
 </details>
