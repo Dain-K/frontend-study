@@ -236,3 +236,240 @@ type Indexable<T> = T extends string ? T & { [index: string]: any } :never;
 ```
 </div>
 </details>
+
+<details>
+<summary> :file_folder: ch 3. Type system </summary>
+<div markdown="1">
+
+## 📋 작성자와 사용자의 관점으로 코드 바라보기
+#### :pushpin: 타입시스템
+- 컴파일러에게 사용하는 타입을 명시적으로 지정하는 시스템
+- 컴파일러가 자동으로 타입을 추론하는 시스템
+#### :pushpin: 타입스크립트의 타임 시스템
+- 타입을 명시적으로 지정할 수 있음
+- 타입을 명시적으로 지정하지 않으면, 타입스크립트 컴파일러가 자동으로 타입을 추론
+#### :pushpin: 타입이란 해당 변수가 할 수 있는 일을 결정
+```javascript
+// f1 이라는 함수의 body에서는 a를 사용할 것
+// a가 할 수 있는 일은 a의 타입이 결정
+
+function f1(a) {
+    return a;
+}
+```
+#### :pushpin: 함수에 대한 오해를 야기하는 자바스크립트
+```javascript
+// (f2 실행의 결과가 NaN을 의도한 것이 아니라면)
+// 이 함수의 작성자는 매개변수 a가 number 타입이라는 가정으로 함수를 작성
+function f2(a) {
+    return a * 38;
+}
+
+// 사용자는 사용법을 숙지하지 않은 채, 문자열을 사용하여 함수를 실행
+
+console.log(f2(10)); // 380
+console.log(f2('Mark')); // NaN
+```
+#### :pushpin: nolmplicitAny 옵셥을 켜면
+타입을 명시적으로 지정하지 않은 경우, 타입스크립트가 추론 중 'any'라고 판단하게 되면, 컴파일 에러를 발생시켜 명시적으로 지정하도록 유도한다.
+- nolmplicitAny에 의한 방어
+```javascript
+// error 발생
+funciot f3(a) {
+    return a * 38;
+}
+
+// 사용자의 코드를 실행할 수 없음
+// 컴파일이 정상적으로 마무리 될 수 있도록 수정해야함
+
+console.log(f3(10));
+console.log(f3('Mark') + 5);
+```
+- number 타입으로 추론된 리턴 타입
+```javascript
+// 매개변수의 타입은 명시적으로 지정
+// 명시적으로 지정하지 않은 함수의 리턴 타입은 number로 추롭
+
+function f4(a: number) {
+    if(a > 0) {
+        return a * 38;
+    }
+}
+
+// 사용자는 사용법에 맞게 숫자혀을 사용하여 함수를 실행
+// 해당 함수의 리턴 타입은 number 이기 때문에, 타입에 따르면 이어진 연산을 바로 할 수 있음
+// 하지만 실제 undefined + 5가 실행되어 NaN가 출력
+console.log(f4(5)); // 190
+console.log(f4(-5) + 5);
+```
+#### :pushpin: srtirctNullChecks 옵션을 켜면
+모든 타입에 자동으로 포함되어 있는 `null`과 `undefined`를 제거해준다.
+- 명시적으로 리턴타입을 지정해야할까
+```javascript
+// 매개변수의 타입과 함수의 리턴 타입을 멱시적으로 지정
+// 실제 함수 구현부의 리턴 타입과 명시적으로 지정한 타입이 일치하지 않아 컴파일 에러 발생
+
+// error
+function f5(a: number): number{
+    if(a > 0) {
+        return a * 38;
+    }
+}
+```
+#### :pushpin: nolmplicitReturns 옵션을 켜면
+함수내에서 보든 코드가 값을 리턴하지 않으면, 컴파일 에러가 발생
+#### :pushpin: object literal type
+```javascript
+function f7(a: {name: string; age: number}): string {
+    return `이름은 ${s.name} 이고, 연령대는 ${Math.floor(a.age / 10) * 10}대 입니다.`
+}
+
+console.log(f7({name: 'Mark', age: 38}));
+console.log(f7('Mark')); // error
+```
+
+## 📋 Structural Type System vs Nominal Type System
+#### :pushpin: Structural Type
+구조가 같으면, 같은 타입이다.
+```javascript
+interface IPerson{
+    name: string;
+    age: number;
+    speak(): string;
+}
+
+type PersonType = {
+    name: string;
+    age: number;
+    speak(): string;
+};
+
+let personInterface: IPerson = {} as any;
+let personType: PersonType = {} as any;
+
+personInterface = personType;
+personType = personInterface;
+```
+#### :pushpin: Nominal Type System
+구조가 같아도 이름이 다르면, 다른 타입이다.
+```javascript
+type PersonID = string & { readonly brand: unique symbol };
+
+function PersonID(id: string): PersonID {
+    return id as PersonID;
+}
+
+function getPersonById(id: PersonID) {}
+
+getPersonById(PersonID('id-aaaa'));
+getPersonById('id-aaaa') // error
+```
+
+## 📋 타입호환성
+```javascript
+// sub1 타입은 sup1 타입의 서브 타입이다.
+let sub1: 1 = 1;
+let sup1: number = sub1;
+sub1 = sup1; // error! Type 'number' is not assignable type '1'.
+
+// sub2 타입은 sup2 타입의 서브 타입이다.
+let sub2: number[] = [1];
+let sup2: object = sub2;
+sub2 = sup2 // error! Type '{}' is missing the following properties from type 'number[]'
+
+// sub3 타입은 sup3 타입의 서브 타입이다.
+let sub3: [number, number] = [1, 2];
+let sup3: number[] = sub3;
+sub3 = sup3; // error! Type 'number[]' is not assignable to type '[number, number]'. Target requires 2 element(s) but source may have fewer.
+
+// sub4 타입은 sup4 타입의 서브 타입이다.
+let sub4: number = 1;
+let sup4: any = sub4;
+sub4 = sup4;
+
+// sub5 타입은 sup5 타입의 서브 타입이다.
+let sub5: never = 0 as never;
+let sup5: number = sub5;
+sub5 = sup5; // error!
+
+class Animal {}
+class Dog extends Animal {
+    eat() {}
+}
+
+// sub6 타입은 sup6 타입의 서브 타입이다.
+let sub6: Dog = new Dog();
+let sup6: Animal = sub6;
+sub6 = sup6; // error!
+```
+1. 같거나 서브 타입인 경우, 할당이 가능하다. => 공변
+```javascript
+// primitive type
+let sub7: string = '';
+let sup7: string | number = sub7;
+
+// object - 각각의 프로퍼티가 대응하는 프로퍼티와 같거나 서브타입이어야 한다.
+let sub8: { a: string; b: number } = [{ a: '', b: 1 }];
+let sup8: { a: string | number; b: number } = sub8;
+
+// array - object 와 마찬가지
+let sub9: Array<{ a: string; b: number }> = [{ a: '', b: 1 }];
+let sup9: Array<{ a: string | number; b: number }> = sub9;
+```
+2. 함수의 매개변수 타입만 같거나 슈퍼타입인 경우, 할당이 가능하다. => 반병
+#### :pushpin: strictFunctionTypes 옵션을 켜면
+함수를 할당할 시에 함수의 매개변수 타입이 같거나 슈퍼타입인 경우가 아닌 경우, 에러를 통해 경고
+## 📋 타입 별칭(별명)
+- interface와 비슷해보임
+- 기타 직접 작성해야하는 타입을 다른 이름으로 지정할 수 있음
+- 만들어진 타입의 refer로 사용하는 것이지 타입을 만드는 것은 아님
+#### :pushpin: Aliasing Primitive
+```javascript
+type MyStringType = string;
+const str = 'world';
+
+let mySter: MyStringType = 'hello';
+myStr = str;
+```
+#### :pushpin: Aliasing Union Type
+```javascript
+let person: string | number = 0;
+person = 'Mark';
+
+type StringOrNumber = string | number;
+
+let another: StringOrNumber = 0;
+another = 'Anna';
+
+/*
+
+1. 유니온 타입은 A 도 가능하고 B 도 가능한 타입
+2. 길게 쓰는걸 짧게
+
+*/
+```
+#### :pushpin: Aliasing Tuple
+```javascript
+let person: [string, number] = ['Mark', 35];
+
+type PersonTuple = [string, number];
+
+let another: PersonTuple = ['Anna', 24];
+
+/*
+
+1. 튜플 타입에 별칭을 줘서 여루군데서 사용할 수 있게 한다.
+
+*/
+```
+</div>
+</details>
+
+<details>
+<summary> :file_folder: ch 4. Typescript Compiler </summary>
+<div markdown="1">
+
+## 📋 Compilation Context
+
+</div>
+</details>
