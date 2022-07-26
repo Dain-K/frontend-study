@@ -469,7 +469,63 @@ let another: PersonTuple = ['Anna', 24];
 <summary> :file_folder: ch 4. Typescript Compiler </summary>
 <div markdown="1">
 
-## 📋 Compilation Context
-
+## 📋 tsconfig schema
+#### :pushpin: 최상위 프로퍼티
+- complieOnSave
+- extends
+- compileOptions
+- files
+- include
+- exclude
+- references
+## 📋 complieOnSave
+- `true` or `false`
+- default false
+- `true` 일 경우 save를 하면 컴파일 해줌
+## 📋 extends 
+- 파일(상대) 경로명: string
+:arrow_right: in POJECT/base.json
+```javascript
+{
+    "compilerIptions": {
+        "strict": true
+    }
+}
+```
+:arrow_right: in POJECT/tsconfig.json
+```javascript
+{
+    "extends": "./base.json",
+}
+```
+## 📋 files, include, exclude
+- 셋 다 설정이 없으면, 전부 다 컴파일
+- `files`
+    - 상대 혹은 절대 경로의 리스트 배열
+    - exclude 보다 쎄다
+- `include`
+    - glob 패턴(마치 .gitignore)
+    - exclude 보다 약하다
+    - `*` 같은걸 사용하면, .ts / .tsx / .d.ts만 include 
+- `exclude`
+    - glob 패턴(마치 .gitignore)
+    - 설정 안하면 `4가지(node_modules, bower_components, jspm_pacages, <outDir>)`를 default로 제외
+    - `<outDir>`은 항상 제외
+## 📋 compileOptions
+#### :pushpin: React 설치
+```javascript
+$ npm i react
+$ npm i --save-dev @types/react
+```
+#### :pushpin: @types
+- 아무 설정을 안하면?
+    - node_modules/@types라는 모든 경로를 찾아서 사용
+- typeRoots를 사용하면?
+    - 배열 안에 들어있는 경로들 아래서만 가져옴
+- types를 사용하면?
+    - 배열 안의 모듈 혹은 ./node_modules/@type/ 안의 모듈 이름에서 찾아옴
+    - [] 빈 배열을 넣는다는건 이 시스템을 이용하지 않겠다는 의미
+- typeRoots와 types를 같이 사용하지 않음
+#### :pushpin:
 </div>
 </details>
