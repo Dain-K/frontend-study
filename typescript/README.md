@@ -526,6 +526,7 @@ $ npm i --save-dev @types/react
     - 배열 안의 모듈 혹은 ./node_modules/@type/ 안의 모듈 이름에서 찾아옴
     - [] 빈 배열을 넣는다는건 이 시스템을 이용하지 않겠다는 의미
 - typeRoots와 types를 같이 사용하지 않음
-#### :pushpin:
+#### :pushpin: target
+- target 된 버전에 따라 ts에서 js 가 다르게 나옴
 </div>
 </details>
