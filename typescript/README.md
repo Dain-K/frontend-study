@@ -528,5 +528,227 @@ $ npm i --save-dev @types/react
 - typeRoots와 types를 같이 사용하지 않음
 #### :pushpin: target
 - target 된 버전에 따라 ts에서 js 가 다르게 나옴
+- 빌드의 결과물을 어떤 버전으로 할 것인가
+
+#### :pushpin: lib
+- 기본 type definition 라이브러리를 어떤 것을 사용할 것인가
+- lib 를 지정하지 않을 때
+    - target 이 'es3'이고, 디폴트로 lib.d.ts를 사용
+- lib 를 지정하면 그 lib 배열로만 라이브러리를 사용
+    - 빈 [] => 'no definition found ...'
+## 📋 outDir, outFile, rootDir
+#### :pushpin: tsconfig.json
+```json
+{
+    "outDir": "./dist", // 출력 파일 경로
+    "rootDir": "./src",  // ts 파일 경로(출력할 파일 경로)
+}
+
+```
+</div>
+</details>
+
+<details>
+<summary> :file_folder: ch 5. Interfaces </summary>
+<div markdown="1">
+
+## 📋 what is interfaces ??
+```typescript
+interface Person1 { 
+    name: string; 
+    age:number;
+}
+
+// function hello1(person: {name: string; age: number}): void {
+//     console.log(`안녕하세요! ${person.name} 입니다.`);
+// }
+
+function hello1(person: Person1): void {
+    console.log(`안녕하세요! ${person.name} 입니다.`);
+}
+
+const p1: Person1 = {
+    name: "Mark",
+    age: 39,
+}
+
+hello1(p1);
+```
+## 📋 optional property
+:one:
+```typescript  
+interface Person2 {
+    name: string; // 꼭 있어야 함
+    age?: number; // 있어도 되고 없어도 됨
+}
+
+function hello2(person: Person2): void {
+    console.log(`안녕하세요! ${person.name} 입니다.`);
+}
+
+hello2({ name: "Mark", age: 39 });
+hello2({ name: "Anna" });
+```
+:two:
+```typescript
+interface Person3{
+    name: string;
+    age?: number;
+    [index: string]: any;
+}
+
+function hello3(person: Person3): void {
+    console.log(`안녕하세요! ${person.name} 입니다.`);
+}
+
+const p31: Person3 = {
+    name: "Mark",
+    age: 39, 
+};
+
+const p32: Person3 = {
+    name: "Anna",
+    sisters: ["Sung", "Chan"],
+};
+
+const p33: Person3 = {
+    name: "Bokdaengi",
+    father: p31,
+    moter: p32,
+};
+
+hello3(p33);
+```
+
+## 📋 functio in interface
+```typescript
+interface Person4 {
+    name: string;
+    age: number;
+    hello(): void;
+}
+
+const p41: Person4 = {
+    name: "Mark",
+    age: 39,
+    hello: function(): void {
+        console.log(`안녕하세요! ${this.name} 입니다.`);
+    }  
+}
+
+const p42: Person4 = {
+    name: "Mark",
+    age: 39,
+    hello(): void {
+        console.log(`안녕하세요! ${this.name} 입니다.`);
+    }  
+}
+
+// const p43: Person4 = {
+//     name: "MArk",
+//     age: 39,
+//     hello(): void => {
+//         console.log(`안녕하세요! ${this.name} 입니다.`);
+//     }  
+// }
+
+p41.hello()
+p42.hello()
+```
+
+## 📋 class implements interface
+```typescript
+interface IPerson1 {
+    name: string;
+    age?: number;
+    hello(): void;
+}
+
+class Person implements IPerson1 {
+    name: string;
+    age?: number | undefined;
+
+    constructor(name: string) { // 생성자를 지정해주어야 오류가 안뜸
+        this.name = name;
+    }
+    hello(): void {
+        console.log(`안녕하세요! ${this.name} 입니다.`);
+    }
+    
+}
+
+const person: IPerson1 = new Person("Mark");
+// IPerson1로 부터 생성된 Person 이므로 IPerson1을 명시해주어야 함
+person.hello()
+```
+## 📋 interface extends interface
+```typescript
+interface IPerson2 {
+    name: string;
+    age?: number;
+}
+
+interface IKorean extends IPerson2{ // 상속관계로 인터페이스 표현
+    city: string;
+}
+
+const k: IKorean = {
+    name: "김다인",
+    city: "서울"
+}
+
+HTMLDivElement
+```
+## 📋 functio interface
+```typescript
+interface HelloPerson {
+    (name: string, age?: number): void;
+}
+
+// HelloPerson 형식에 맞춰야함
+const helloPerson: HelloPerson = function (name: string) {
+    console.log(`안녕하세요! ${name} 입니다.`);
+}
+
+helloPerson("Mark", 39);
+```
+## 📋 Readonly Interface Properties
+```typescript
+interface Person8 {
+    name: string;
+    age?: number;
+    readonly gender: string;
+}
+
+const p81: Person8 = {
+    name: "Mark",
+    gender: "male",
+};
+
+// readonly를 사용하여 수정이 불가능함
+// p81.gender = "fmaale";
+
+```
+## 📋 type ailas vs interface
+#### :pushpin: function
+```typescript
+// type alias
+type EatType = (food: string) => void;
+
+// interface
+interface IEat {
+    (food: string): void;
+}
+```
+#### :pushpin: array
+```typescript
+// type alias
+type PersonList = string[];
+
+// interface
+interface IPersonList {
+    [index: number]: string;
+}
+```
 </div>
 </details>
