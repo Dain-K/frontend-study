@@ -752,3 +752,167 @@ interface IPersonList {
 ```
 </div>
 </details>
+
+<details>
+<summary> :file_folder: ch 6. Classes </summary>
+<div markdown="1">
+
+## 📋 What are Classes ??
+- object 를 만드는 blueprint (청사지느 설계도)
+- 클래스 이전에 object를 만드는 기본적인 방법은 function
+- js 에도 class 는 es6부터 사용 가능
+- OOP을 위한 초석
+- TypeScript 에서는 클래스도 사용자가 만드는 타입의 하나
+## 📋 Quick Start - class
+```typescript
+class Person {} // 클래스 생성
+
+const p1 = new Person(); //  object 생성
+
+console.log(p1); // 출력: Person {}
+
+
+class Person1 {
+    name;
+    constructor(name: string){
+        this.name = name;
+    }
+} 
+
+const p2 = new Person1("Mark");
+```
+- class 키워드를 이용하여 클래스를 만들 수 있음
+- class 이름은 보통 대문자를 이용
+- new 를 이용하여 class 를 통해 object 를 만들 수 있음
+- constructor 를 이용하여 object 를 생성하면서 값을 전달할 수 있음
+- this 를 이용해서 만들어진 object 를 가리킬 수 있음
+- JS 로 컴파일되면 es5 의 경우 function 으로 변경
+## 📋 constructor & initialize
+클래스의 생성자와 초기화
+- 생성자 함수가 없으면, 디폴트 생성자가 불린다.
+- 프로그래머가 만든 새엉자가 하낟라도 있으면, 디폴트 생성자가 사라진다.
+- strict 모드에서는 프로퍼티를 선언하는 곳 또는 생성자에서 값을 할당해야 한다.
+- 프로퍼티를 선언하는 곳 또는 생성자에서 값을 할당하지 않는 경우에는 `!` 를 붙여서 위험을 표현한다.
+- 클래스의 프로퍼티가 정의되어 있지만, 값을 대입하지 않으면 undefined 이다.
+- 생성자에는 async 를 설정할 수 없다.
+```typescript
+class Person2 { 
+    // stict가 true로 되어있기 때문에 초기값을 선언해주어야함
+    name: string = "Mark";
+    age!: number;
+} 
+
+const p3: Person2 = new Person2(); //  default 생성자만 호출
+p3.age = 39; // !를 적어줬으므로 무조건 초기값을 선언해주어야 함
+console.log(p3); // 출력: Person {}
+
+/////////////////////////////////////////////////////////////
+
+class Person3 { 
+    name: string = "Mark";
+    age: number;
+
+    constructor(age: number) {
+        this.age = age;
+    }
+} 
+
+const p4: Person3 = new Person3(39); 
+console.log(p4); 
+
+/////////////////////////////////////////////////////////////
+
+class Person4 { 
+    name: string = "Mark";
+    age: number;
+
+    constructor(age?: number) {
+        if(age === undefined){
+            this.age = 20;
+        } else{
+            this.age = age;
+        }
+    }
+} 
+
+const p5: Person4 = new Person4(39); 
+const p6: Person4 = new Person4(); 
+console.log(p5); 
+```
+## 📋 접근제어자(Access Modifiers)
+- typescript는 기본적으로 모두 외부에서 접근이 가능하다. - `public`
+- 접근제어자에는 public, private, protected 가 있다.
+- 설정하지 않으면 `public` 이다.
+- 클래스 내부의 모든 곳에 (생성자, 프로퍼티, 메서드) 설정 가능하다.
+- private 으로 설정하면 클래스 외부에서 접근할 수 없다.
+- 자바스크립트에서 private 지원하지 않아 오랫동안 프로퍼티나 메서드 이름 앞에 `_`를 붙여서 포현했다.
+```typescript
+class Person5 { 
+    public name: string = "Mark";
+    private _age: number;
+
+    constructor(_age?: number) {
+        if(_age === undefined){
+            this._age = 20;
+        } else{
+            this._age = _age;
+        }
+    }
+    public async init() {}
+} 
+```
+## 📋 initialization in constructor parameters
+```typescript
+class Person6 { 
+    constructor(public name: string, private age?: number) {}
+} 
+
+const p7: Person6 = new Person6("Mark", 39); 
+console.log(p7); 
+```
+## 📋 Getters & Setters
+```typescript
+class Person8 { 
+    constructor(private _name: string, private age?: number) {}
+    
+    get name() { // return을 반드시 해줘야 함
+        //
+        // console.log("get")
+        return this._name + " Lee";
+    }
+
+    set name(n: string) { // 인자를 받아서 설정해주어야 함
+        // console.log("set")
+        this._name = n;
+    }
+} 
+
+const p8: Person8 = new Person8("Mark", 39); 
+console.log(p8.name); // get을 하는 함수 getters
+p8.name = "Kevin"; // set 을 하는 함수 setters
+console.log(p8.name);
+```
+## 📋 readonly properties
+```typescript
+class Person9 { 
+    // readonly
+    // 밖에서 name을 바꾸려고 하면 에러 발생
+    // 초기화 되는 영역에서만 바꿀 수 있음
+    public readonly name: string = "Mark"; 
+    private readonly country: string = "Korea"; 
+
+    constructor(private _name: string, private age?: number) {
+        this.country = "China";
+    }
+
+    // hello(){
+    //     this.country = "China";
+    // } 오류 발생
+} 
+
+const p9: Person9 = new Person9("Mark", 39); 
+```
+## 📋 Index Signatures in class
+
+</div>
+</details>
