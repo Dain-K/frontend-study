@@ -3,7 +3,9 @@
 // { chloe: 'femaile', alex: 'male', anna: 'female' }
 
 class Students {
-    [index: string]: string;
+    [index: string]: "male" | "female";
+    // 정해진 값만 넣을 수 있음
+    mark: 'male' = "male";
 }
 
 const a = new Students();
@@ -13,8 +15,8 @@ a.jade = "male";
 console.log(a);
 
 const b = new Students();
-b.chloe = "femaile";
+b.chloe = "female";
 b.alex = "male";
 b.anna = "female";
 
-console.log(b)
+console.log(b);
