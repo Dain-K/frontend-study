@@ -974,6 +974,81 @@ p13.hello();
 
 ```
 ## 📋 Singletons
+어플리케이션이 실행되는 중간에 클래스로부터 단 하나의 오브젝트를 생성
+```typescript
+class ClassName {
+    private static instance: ClassName | null = null;
+    public static getInstance(): ClassName {
+        // ClassName 으로부터 만든 object 가 있으면, 그걸 return
+        // ClassName 으로부터 만든 object 가 없으면, 만든다.
+        if(ClassName.instance === null){
+            ClassName.instance = new ClassName();
+        }
+
+        return ClassName.instance;
+    }
+    private constructor() {} // 외부에서 new를 직접 호출 못하도록
+}
+
+const a1 = ClassName.getInstance();
+const b1 = ClassName.getInstance();
+
+console.log(a === b); // true
+```
 ## 📋 상속(Inheritance)
+```typescript
+class Parent {
+    constructor (protected _name: string, private _age: number) {}
+    // protected: 외부에서 접근할수 없지만 상속 받는 관계에 있는 경우 접근 가능
+
+    public print(): void {
+        console.log(`이름은 ${this._name} 이고, 나이는 ${this._age} 입니다`);
+    }
+
+    protected printName(): void {
+        console.log(this._name);
+    }
+}
+
+// const p = new Parent("Mark", 39);
+// p.print();
+
+class Child extends Parent {
+    public _name = "Mark Jr."; // 위의 name을 오버라이딩
+    public gender = "male";
+
+    constructor (age: number) {
+        super("Mark Jr.", age);
+
+        this.printName();
+    };
+}
+
+// const c = new Child("Son", 5); // Parent의 형식을 지켜야 한다.
+const c = new Child(5);
+c.gender;
+c._name;
+c.print();
+```
+## 📋 Abstract Classes
+완전하지 않은 클래스 표현
+```typescript
+abstract class AbstractPerson {
+    protected _name: string= 'Mark';
+
+    abstract setName(name: string): void;
+}
+// abstract의 경우 기능이 완전하지 않아
+// new abstract()를 바로 사용할 수 없음
+
+class APerson extends AbstractPerson {
+    setName(name: string): void {
+        this._name = name;
+    }
+}
+
+const p = new APerson();
+p.setName('MArk');
+```
 </div>
 </details>
