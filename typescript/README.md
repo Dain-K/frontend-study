@@ -1052,3 +1052,71 @@ p.setName('MArk');
 ```
 </div>
 </details>
+
+<details>
+<summary> :file_folder: ch 7. Generics </summary>
+<div markdown="1">
+
+## 📋 Generics, Any 와 다른 점
+- 들어오는 인자와 나가는 인자의 로직이 같음
+- 더 많은 반복된 함수들이 생김
+```typescript
+function helloString(message: string): string {
+    return message; 
+}
+
+function helloNumber(message: number): number {
+    return message;
+}
+```
+:right_arrow: 이를 해결하기 위해 `any` 사용
+```typescript
+function hello(message: any): any {
+    return message;
+}
+
+console.log(hello("Mark").length);
+console.log(hello(39).length);
+```
+하지만 type을 알 수가 없다 <br>
+:right_arrow: 들어가는 type을 리턴되는 type에 연관을 시켜주면 좋겠다 하여 나온것이 `generic`
+```typescript
+function helloGeneric<T>(message: T): T {
+    return message;
+}
+
+console.log(helloGeneric('Mark').length);
+console.log(helloGeneric(39));
+console.log(helloGeneric(true));
+```
+## 📋 Generics Basic
+Generics 타입 지정 방법
+```typescript
+function helloBasic<T>(message: T): T {
+    return message;
+}
+
+// type을 string으로 지정해줌
+helloBasic<string>("Mark");
+// type을 추론
+helloBasic(36);
+
+function helloBasic1<T, U>(message: T, comment: U): T {
+    return message;
+}
+
+helloBasic1<string, number>("Mark", 9);
+helloBasic1(36, 39);
+```
+## 📋 Generics Array & Tuple
+#### :pushpin: 배열로 받기
+```typescript
+
+```
+## 📋 Generics Function
+## 📋 Generics class
+## 📋 Generics with extends
+## 📋 keyof & type lookup system
+
+</div>
+</details>
