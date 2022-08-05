@@ -1111,12 +1111,68 @@ helloBasic1(36, 39);
 ## 📋 Generics Array & Tuple
 #### :pushpin: 배열로 받기
 ```typescript
+function helloArray<T>(message: T[]): T {
+    return message[0];
+}
 
+helloArray(["Hello", "World"]); // [string, string]
+helloArray(["Hello", 5]); // [string, number]
+
+function helloTuple<T, K>(message: [T, K]): T{
+    return message[0];
+}
+
+helloTuple(["Hello", "World"]); // [string, string]
+helloTuple(["Hello", 5]); // [string, string]
 ```
 ## 📋 Generics Function
-## 📋 Generics class
-## 📋 Generics with extends
-## 📋 keyof & type lookup system
+함수의 타입만 선언하는 방식
+```typescript
+type HelloFunctionGeneric1 = <T>(message: T) => T;
 
+const hellofunction1: HelloFunctionGeneric1 =  <T>(message: T) : T => {
+    return message;
+}
+
+interface HelloFunctionGeneric2 {
+    <T>(message: T) : T;
+}
+
+const hellofunction2: HelloFunctionGeneric2 = <T>(message: T) : T => {
+    return message;
+}
+```
+## 📋 Generics class
+```typescript
+class Person<T, K> {
+    private _name: T;
+    private _age: K;
+
+    constructor(name: T, age: K) {
+        this._name = name;
+        this._age = age;
+    }
+}
+
+new Person("Mark", 39);
+// new Person<string>(39);
+```
+## 📋 Generics with extends
+타입은 가장 작은 범위로 제한하는 것이 좋다
+```typescript
+class PersonExtends <T extends string | number> {
+    private _name: T;
+
+    constructor(name: T) {
+        this._name = name;
+    }
+}
+
+new PersonExtends("Mark");
+new PersonExtends(39);
+// new PersonExtends(true);
+```
+## 📋 keyof & type lookup system
+타입을 정확하게 찾아낼 수 있는 방식
 </div>
 </details>
