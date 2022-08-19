@@ -5,7 +5,7 @@
 <div markdown="1">
 
 ## indexOf()
-`indexOf()` 메서드는 호출한 String 객체에서 주어진 값과 일치하는 첫번째 인덱스를 반환  
+`indexOf()` 메서드는 호출한 String 객체에서 주어진 값과 일치하는 첫번째 인덱스를 반환 <br>
 일치하는 값이 없으면 -1을 반환
 ```javascript
   const result = 'Hello world!'.indexOf('wordl')
@@ -81,68 +81,68 @@
 ## toFixed()
 `toFixed()` 메서드는 숫자를 고정 소수점 표기법(fixed-point notation)으로 표시
 ```javascript
-  const pi = 3.14159265358979
-  console.log(pi)
-  // 출력: '3.14159265358979'
-  const str = pi.toFixed(2)
-  console.log(str)
-  // 출력: '3.14'
-  console.log(typeof str)
-  // 출력: 'string'
-  const integer = parseInt(str)
-  cont float = parseFloat(Str)
-  console.log(integer)
-  // 출력: '3'
-  console.log(float)
-  // 출력: '3.14'
-  console.log(typeof integer, typeof float)
-  // 출력: 'number number'
+const pi = 3.14159265358979
+console.log(pi)
+// 출력: '3.14159265358979'
+const str = pi.toFixed(2)
+console.log(str)
+// 출력: '3.14'
+console.log(typeof str)
+// 출력: 'string'
+const integer = parseInt(str)
+cont float = parseFloat(Str)
+console.log(integer)
+// 출력: '3'
+console.log(float)
+// 출력: '3.14'
+console.log(typeof integer, typeof float)
+// 출력: 'number number'
 ```
 ## Math.abs()
 `Math.abs()` 함수는 주어진 숫자의 절대값을 반환
 ## Math.max()
 `Math.max()` 함수는 입력값으로 받은 0개 이상의 숫자 중 가장 큰 숫자를 반환
 ```javascript
-  console.log(Math.max(2, 8))
-  // 출력: '8'
+console.log(Math.max(2, 8))
+// 출력: '8'
 ```
 ## Math.min()
 `Math.min()`함수는 주어진 숫자들 중 가장 작은 값을 반환
 ```javascript
-  console.log(Math.min(2, 8))
-  // 출력: '2'
+console.log(Math.min(2, 8))
+// 출력: '2'
 ```
 ## Math.ceil()
 `Math.ceil()` 함수는 주어진 숫자보다 크거나 같은 숫자 중 가장 작은 숫자를 integer 로 반환
 ```javascript
-  console.log(Math.ceil(3.14))
-  // 출력: '4'
+console.log(Math.ceil(3.14))
+// 출력: '4'
 ```
 ## Math.floor()
 `Math.floor()` 함수는 주어진 숫자와 같거나 작은 정수 중에서 가장 큰 수를 반환
 ```javascript
-  console.log(Math.floor(3.14))
-  // 출력: '3'
+console.log(Math.floor(3.14))
+// 출력: '3'
 ```
 ## Math.round()
 `Math.round()` 함수는 입력값을 반올림한 수와 가장 가까운 정수 값을 반환
 ```javascript
-  console.log(Math.round(3.14))
-  // 출력: '3'
+console.log(Math.round(3.14))
+// 출력: '3'
 ```
 ## Math.random()
 `Math.random()`함수는 0 이상 1 미만의 구간에서 근사적으로 균일한(approximately uniform) 부동소숫점 의사난수를 반환
 - 사용자가 원하는 범위로 변형 가능
 ```javascript
-  console.log(Math.random())
-  // 출력: '0.065845285'
+console.log(Math.random())
+// 출력: '0.065845285'
 ```
 
 [참고]
 ```javascript
-  export defalut function random() {
-    return Math.floor(Math.random() * 10)
-  }
+export defalut function random() {
+  return Math.floor(Math.random() * 10)
+}
 ```
 </div>
 </details>
@@ -829,7 +829,7 @@ localStorage.setItem('user', JSON.stringify(obj))
 ```
 https://www.omdbapi.com/?apikey=7035c60c&s=frozen
 ```
-#### :key: 이를 main.js에서 활용하기 위해 `axios 패키지`f를 이용하면 된다.
+#### :key: 이를 main.js에서 활용하기 위해 `axios 패키지`를 이용하면 된다.
 ## axios 패키지
 HTTP를 처리해주는 js 패키지
 ```html
@@ -868,6 +868,7 @@ fetchMovies()
 ```javascript
 npm init -y
 ```
+
 - package.json 파일 내용 변경
 ```javascript
 {
@@ -887,9 +888,11 @@ npm init -y
   }
 }
 ```
+
 ```javascript
 npm i parcel-bundler -D
 ```
+
 오류가 발생할 경우 버전 낮추기
 ```javascript
 npm i parcel-bundler1.12.3-D
@@ -1030,7 +1033,7 @@ console.log(str.match(regexp))
     <td>일치하는 문자열을 대체하고 대체된 문자열(String) 반환</td>
   </tr>
 </table>
-#### 📋 예제코드1
+#### 📋 예제코드 1
 ```javascript
 const str = ` 
 010-1234-5678
@@ -1045,7 +1048,7 @@ console.log(regexp.test(str)) // 출력: true
 console.log(str.replace(regexp, 'AAA')) // 새로운 단어로 대체
 console.log(str) // const는 재할당 불가
 ```
-#### 📋 예제코드2
+#### 📋 예제코드 2
 ```javascript
 let str = ` 
 010-1234-5678
