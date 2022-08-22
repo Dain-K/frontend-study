@@ -271,7 +271,8 @@ console.log(f2(10)); // 380
 console.log(f2('Mark')); // NaN
 ```
 #### :pushpin: nolmplicitAny 옵셥을 켜면
-타입을 명시적으로 지정하지 않은 경우, 타입스크립트가 추론 중 'any'라고 판단하게 되면, 컴파일 에러를 발생시켜 명시적으로 지정하도록 유도한다.
+타입을 명시적으로 지정하지 않은 경우, <br>
+타입스크립트가 추론 중 'any'라고 판단하게 되면, 컴파일 에러를 발생시켜 명시적으로 지정하도록 유도한다.
 - nolmplicitAny에 의한 방어
 ```javascript
 // error 발생
@@ -288,7 +289,7 @@ console.log(f3('Mark') + 5);
 - number 타입으로 추론된 리턴 타입
 ```javascript
 // 매개변수의 타입은 명시적으로 지정
-// 명시적으로 지정하지 않은 함수의 리턴 타입은 number로 추롭
+// 명시적으로 지정하지 않은 함수의 리턴 타입은 number로 추론
 
 function f4(a: number) {
     if(a > 0) {
@@ -304,7 +305,7 @@ console.log(f4(-5) + 5);
 ```
 #### :pushpin: srtirctNullChecks 옵션을 켜면
 모든 타입에 자동으로 포함되어 있는 `null`과 `undefined`를 제거해준다.
-- 명시적으로 리턴타입을 지정해야할까
+- 명시적으로 리턴타입을 지정해야할까?
 ```javascript
 // 매개변수의 타입과 함수의 리턴 타입을 멱시적으로 지정
 // 실제 함수 구현부의 리턴 타입과 명시적으로 지정한 타입이 일치하지 않아 컴파일 에러 발생
@@ -317,7 +318,7 @@ function f5(a: number): number{
 }
 ```
 #### :pushpin: nolmplicitReturns 옵션을 켜면
-함수내에서 보든 코드가 값을 리턴하지 않으면, 컴파일 에러가 발생
+함수내에서 보든 코드가 값을 리턴하지 않으면, 컴파일 에러 발생
 #### :pushpin: object literal type
 ```javascript
 function f7(a: {name: string; age: number}): string {
