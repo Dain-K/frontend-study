@@ -521,3 +521,42 @@ mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 
   align-items: center;
 }
 ```
+## 색상 내장 함수
+- mix()
+- lighten()
+- darken()
+- saturate()
+- desaturate()
+- grayscale()
+- invert()
+- rgba()
+## 데이터 종류
+- scss
+```scss
+$number: 1;
+$string: bold;
+$color: red;
+$boolean: true;
+$null: numm;
+$list: orange, royalblue, yellow; // 배열 형태로 가지고 있음
+$map: (
+  o: orange;
+  r: royalblue,
+  y: yellow
+);
+.box {
+  width: 100px;
+  color: red;
+  position: relative;
+}
+
+```
+- css
+```css
+.box {
+  width: 100px;
+  color: red;
+  position: relative;
+}
+```
+## 반복문 @each
