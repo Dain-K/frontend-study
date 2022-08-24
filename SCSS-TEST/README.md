@@ -1,8 +1,23 @@
+# :lollipop: SCSS study
+<details>
+<summary> :bookmark_tabs: CSS, SASS, SCSS  </summary>
+<div markdown="1">
+
 ## CSS, SCSS
-- CSS: Cascading Style Sheets - 종속형 시트
-- SCSS: Sassy CSS - 문법적으로 완전 멋진(Sassy) CSS
+- `CSS` : Cascading Style Sheets - 종속형 시트
+- `SCSS` : Sassy CSS - 문법적으로 완전 멋진(Sassy) CSS
+
 ## SCSS 사용 이유
-CSS가 복잡한 언어는 아니지만, 프로젝트의 크기가 커지고 고도화 될수록 유지보수의 어려움이 발생하게 된다. 이러한 문제점을 SCSS 가 해소시켜줄 수 있다.
+CSS가 복잡한 언어는 아니지만, 프로젝트의 크기가 커지고 고도화 될수록 유지보수의 어려움이 발생하게 된다.<br>
+이러한 문제점을 <b>SCSS</b> 가 해소시켜줄 수 있다.
+
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 기본 설정  </summary>
+<div markdown="1">
+
 ## parcel bundler 설치
 ```javascript
 npm i -D parcel-bundler
@@ -29,19 +44,27 @@ package.jsom 파일 수정
 
 ```
 
-
 ## index.html과 main.scss 연결
 index.html `<head>` 부분에 아래의 태그 추가하기
 ```html
 <link rel="stylesheet" href="./main.scss" />
 ```
-- scss파일을 생성 후 build 하면 package.json의 parcel-bundler가 이를 진지하고 자동으로 아래의 의존성을 추가함다.
+scss 파일을 생성 후, build 하면 package.json 의 `parcel-bundler` 가 이를 진지하고 자동으로 아래의 의존성을 추가한다.
 ```json
     "devDependencies": {
         "parcel-bundler": "^1.12.5",
         "sass": "^1.54.5"
     }
 ```
+
+</div>
+</details>
+
+
+
+
+
+
 
 
 ## css와 scss 차이
