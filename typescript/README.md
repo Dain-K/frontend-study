@@ -6,15 +6,15 @@
 
 ## Typescript 기본설정
 #### :pushpin: npm 으로 만들기
-```javascript
+```bash
 npm init -y
 ```
 #### :pushpin: 타입스크립트 설치
-```javascript
+```bash
 npm i typescript -D 
 ```
 #### :pushpin: typescript 제공하는 기본 옵션 사용하기 위한 `tsconfig.json` 생성
-```javascript
+```bash
 npx tsc --init
 ```
 #### :pushpin: tsconfig.json 파일에서 확인해야할 것
@@ -23,12 +23,12 @@ npx tsc --init
 ```  
 이것이 true로 되어있는지 확인하는 것이 중요하다.
 #### :pushpin: 컴파일 코드
-```javascript
+```bash
 npx tsc
 ```
 :arrow_right: `.ts` 파일과 파일명이 같은 `.js` 파일 생성 
 #### :pushpin: 파일 실행
-```javascript
+```
 node boolean.js // 파일명
 ```
 </div>
