@@ -61,21 +61,13 @@ scss 파일을 생성 후, build 하면 package.json 의 `parcel-bundler` 가 �
 </details>
 
 
-
-
-
-
-
+<details>
+<summary> :bookmark_tabs: 코드로 보는 css와 scss  </summary>
+<div markdown="1">
 
 ## css와 scss 차이
-scss를 작성하면 css 파일이 생성된다.
-- css
-```css
-.container h1 {
-  color: royalblue;
-}
-```
-- scss
+scss를 작성하면 css 파일이 dist 디렉토리 안에 자동으로  <br>
+:seedling: scss
 ```scss
 $color: royalblue;
 .container {
@@ -84,9 +76,24 @@ $color: royalblue;
     }
 }
 ```
+:seedling: css
+```css
+.container h1 {
+  color: royalblue;
+}
+```
+</div>
+</details>
 
+
+
+<details>
+<summary> :bookmark_tabs: [scss] 주석  </summary>
+<div markdown="1">
 
 ## scss 주석
+`//` 와 `/**/` 사용 가능 <br>
+:seedling: scss
 ```scss
 $color: royalblue;
 .container {
@@ -97,7 +104,7 @@ $color: royalblue;
     }
 }
 ```
-위 코드를 css 로 변환하면
+:seedling: css
 ```css
 .container h1 {
     color: royalblue;
@@ -105,9 +112,17 @@ $color: royalblue;
 }
 ```
 
+</div>
+</details>
+
+
+
+<details>
+<summary> :bookmark_tabs: [scss] 중  </summary>
+<div markdown="1">
 
 ## 중첩 with SassMeister
-- scss
+:seedling: scss
 ```scss
 .container {
     ul {
@@ -123,7 +138,7 @@ $color: royalblue;
     }
 }
 ```
-- css
+:seedling: css
 ```css
 .container ul li {
   font-size: 40px;
@@ -136,8 +151,8 @@ $color: royalblue;
 }
 
 ```
-자식 요소인 것을 명확히 표시하기
-- scss
+자식 요소인 것을 명확히 표시하기 <br>
+:seedling: scss
 ```scss
 .container {
     > ul {
@@ -153,7 +168,7 @@ $color: royalblue;
     }
 }
 ```
-- css
+:seedling: css
 ```css
 .container > ul li {
   font-size: 40px;
@@ -165,6 +180,10 @@ $color: royalblue;
   color: orange;
 }
 ```
+</div>
+</details>
+
+
 
 ## 상속(부모), 선택자 참조
 `&` 기호 사용
