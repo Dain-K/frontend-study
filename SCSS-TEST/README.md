@@ -88,7 +88,7 @@ $color: royalblue;
 
 
 <details>
-<summary> :bookmark_tabs: [scss] 주석  </summary>
+<summary> :bookmark_tabs: 주석  </summary>
 <div markdown="1">
 
 ## scss 주석
@@ -118,10 +118,11 @@ $color: royalblue;
 
 
 <details>
-<summary> :bookmark_tabs: [scss] 중  </summary>
+<summary> :bookmark_tabs: 중첩(Nesting)  </summary>
 <div markdown="1">
 
 ## 중첩 with SassMeister
+상위 선택자의 반복을 피하고 좀 더 편리하게 복잡한 구조를 작성할 수 있음 <br>
 :seedling: scss
 ```scss
 .container {
@@ -184,10 +185,13 @@ $color: royalblue;
 </details>
 
 
+<details>
+<summary> :bookmark_tabs: 상위 선택자 참조(Ampersand)  </summary>
+<div markdown="1">
 
 ## 상속(부모), 선택자 참조
-`&` 기호 사용
-- scss
+`&` 기호 사용 <br>
+:seedling: scss
 ```scss
 .btn {
     position: absolute;
@@ -203,7 +207,7 @@ $color: royalblue;
     }
 }
 ```
-- css
+:seedling: css
 ```css
 .btn {
   position: absolute;
@@ -216,7 +220,8 @@ $color: royalblue;
   margin-right: 0;
 }
 ```
-- scss
+& 키워드가 참조한 상위 선택자로 치환되는 것이기 때문에 다음과 같이 응용할 수도 있음 <br>
+:seediling: scss
 ```scss
 .fs{
     &-small { font-size: 12px;}
@@ -224,7 +229,7 @@ $color: royalblue;
     &-large { font-size: 16px;}
 }
 ```
-- css
+:seediling: css
 ```css
 .fs-small {
   font-size: 12px;
@@ -236,11 +241,16 @@ $color: royalblue;
   font-size: 16px;
 }
 ```
+</div>
+</details>
 
+<details>
+<summary> :bookmark_tabs: 중첩된 속성  </summary>
+<div markdown="1">
 
 ## 중첩된 속성
-네임스페이스가 동일할 때 사용
-- scss
+네임스페이스가 동일할 때 가지는 속성들을 다음과 같이 사용할 수 있음 <br>
+:seedling: scss
 ```scss
 .box{
     font: {
@@ -260,7 +270,7 @@ $color: royalblue;
     };
 }
 ```
-- css
+:seedling: css
 ```css
 .box {
   font-weight: bold;
@@ -274,8 +284,17 @@ $color: royalblue;
   padding-right: 30px;
 }
 ```
+
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 변수 (variables)  </summary>
+<div markdown="1">
+
 ## 변수 (variables)
-- scss
+반복적으로 사용되는 값을 변수로 지정<br>
+:seedling: scss
 ```scss
 // 변수 (variables)
 $size: 200px; // 전역변수
@@ -291,7 +310,7 @@ $size: 200px; // 전역변수
     left: $size;
 }
 ```
-- css
+:seedling: css
 ```css
 .container {
   position: fixed;
@@ -304,9 +323,38 @@ $size: 200px; // 전역변수
   transform: translateX(100px);
 }
 ```
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 여러 파일 가져오기 @import  </summary>
+<div markdown="1">
+
+`@import`로 외부에서 가져온 SASS 파일은 모두 단일 CSS 출력 파일로 병합됨 <br>
+또한, 가져온 파일에 정의된 모든 변수 또는 Mixins 드을 주 파일에서 사용할 수 있음 <br>
+하나의 `@import` 로 여러 파일을 가져올 수도 있음 <br>
+<br>
+파일 이름은 `,`로 구분 <br>
+:seedling: scss
+
+```scss
+@import "header", "footer"; 
+```
+
+</div>
+</details>
+
+
+<details>
+<summary> :bookmark_tabs: 산술연산 (Operations)  </summary>
+<div markdown="1">
+
 ## 산술연산
+기본적인 연산 기능을 지원 <br>
+레이아웃 작업 시 상황에 맞게 크기를 계산 하거나 정해진 값을 나눠 작성할 경우 유용<br>
 산술 연산을 할때 기본적으로 단위가 동일해야함
-- scss
+:seedling: scss
+
 ```scss
 // 산술 연산
 div {
@@ -321,7 +369,7 @@ div {
     padding: 20px % 7;
 }
 ```
-- css
+:seedling: css
 ```css
 div {
   width: 40px;
@@ -333,10 +381,27 @@ div {
   padding: 6px;
 }
 ```
+### :pushpin: 상대적 단위 연산
+일반적으로 절대값을 나타내는 `px` 단위로 연산을 한다. <br>
+하지만 상대적 단위 (`%`, `em`, `vw` 등)의 연산의 경우 `CSS calc()` 로 연산해야 한다.
+:seedling: scss
+```scss
+  width: 50% - 20px;  // 단위 모순 에러(Incompatible units error)
+  width: calc(50% - 20px);  // 연산 가능
+```
+</div>
+</details>
+
+
+<details>
+<summary> :bookmark_tabs: 재활용 (Mixins) - `@mixin` </summary>
+<div markdown="1">
+
 ## 재활용 (Mixins) - @mixin
-mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 정의하는 기능이다.
-:heavy_check_mark: 정의하기: `@mixin` 믹스인 이름 {CSS 스타일}
-:heavy_check_mark: 호출하기: `@include` 믹스인 이름
+mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 정의하는 기능이다. <br>
+:heavy_check_mark: 정의하기: `@mixin` 믹스인 이름 {CSS 스타일}<br>
+:heavy_check_mark: 호출하기: `@include` 믹스인 이름 <br>
+:seedling: 사용 틀
 ```scss
 //@mixin - 스타일 정의
 @mixin 믹스인 이름 {
@@ -472,6 +537,13 @@ mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 
   background-color: tomato;
 }
 ```
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 반복문 - `@for` </summary>
+<div markdown="1">
+
 ## 반복문(@for)
 `@for`는 클래스 스타일 또는 값을 일정하게 변화하면서 일정 횟수동안 반복하여 사용할 수 있는 문법이다. <br>
 자바스크립트의 for문과 유사하다. <br>
@@ -482,7 +554,7 @@ mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 
 	// 반복내용
 };
 ```
-- scss
+:seedling: scss
 ```scss
 @for $i from 1 through 10 {
     .box:nth-child(#{$i}) {
@@ -490,7 +562,7 @@ mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 
     }
 }
 ```
-- css
+:seedling: css
 ```css
 .box:nth-child(1) {
   width: 100px;
@@ -532,8 +604,15 @@ mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 
   width: 1000px;
 }
 ```
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 함수 </summary>
+<div markdown="1">
+
 ## 함수
-- scss
+:seedling: scss
 ```scss
 // 함수
 @mixin center{
@@ -553,7 +632,7 @@ mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 
     @include center;
 }
 ```
-- css
+:seedling: css
 ```css
 .box {
   width: 100px;
@@ -563,6 +642,13 @@ mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 
   align-items: center;
 }
 ```
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 색상 내장 함수 </summary>
+<div markdown="1">
+
 ## 색상 내장 함수
 - mix()
 - lighten()
@@ -572,8 +658,15 @@ mixin(믹스인)은 반복적으로 재사용할 CSS 스타일 그룹 선언을 
 - grayscale()
 - invert()
 - rgba()
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 데이터 종류 </summary>
+<div markdown="1">
+
 ## 데이터 종류
-- scss
+:seedling: scss
 ```scss
 $number: 1;
 $string: bold;
@@ -593,7 +686,7 @@ $map: (
 }
 
 ```
-- css
+:seedling: css
 ```css
 .box {
   width: 100px;
@@ -601,4 +694,133 @@ $map: (
   position: relative;
 }
 ```
-## 반복문 @each
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 반복문 @each </summary>
+<div markdown="1">
+
+:seedling: scss
+```scss
+$number: 1;
+$string: bold;
+$color: red;
+$boolean: true;
+$null: numm;
+$list: orange, royalblue, yellow;
+$map: (
+    o: orange,
+    r: royalblue,
+    y: yellow
+);
+@each $c in $list {
+    .box {
+        color: $c;
+    }
+}
+```
+:seedling: css
+```css
+.box {
+  color: orange;
+}
+
+.box {
+  color: royalblue;
+}
+
+.box {
+  color: yellow;
+}
+```
+
+:seedling: scss
+```scss
+@each $k, $v in $map {
+    .box-#{$k} {
+        color: $v;
+    }
+}
+```
+:seedling: css
+```css
+.box-o {
+  color: orange;
+}
+
+.box-r {
+  color: royalblue;
+}
+
+.box-y {
+  color: yellow;
+}
+```
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 재활용 @content </summary>
+<div markdown="1">
+
+선언된 Mixin에 `@content` 이 포함되어 있다면 해당 부분에 원하는 스타일 블록 을 전달할 수 있음.<br>
+이 방식을 사용하여 기존 Mixin이 가지고 있는 기능에 선택자나 속성 등을 추가
+:seeding: 사용 틀
+```scss
+@mixin 믹스인이름() {
+  스타일;
+  @content;
+}
+
+@include 믹스인이름() {
+  // 스타일 블록
+  스타일;
+}
+```
+:seedling: scss
+```scss
+@mixin left-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @content;
+}
+.container {
+    width: 100px;
+    height: 100px;
+    @include left-top;
+}
+.box {
+    width: 200px;
+    height: 300px;
+    @include left-top{
+        bottom: 0;
+        right: auto;
+        margin: auto;
+    }
+}
+```
+:seedling: css
+```css
+.container {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.box {
+  width: 200px;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: auto;
+  margin: auto;
+}
+```
+</div>
+</details>
