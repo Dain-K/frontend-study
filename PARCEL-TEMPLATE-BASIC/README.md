@@ -3,11 +3,12 @@
 <summary> :bookmark_tabs: 프로젝트 생성  </summary>
 <div markdown="1">
  
-## :bulb: npm 설치하기
+## 프로젝트 생성
+### :bulb: npm 설치하기
 ```bash
 npm init -y
 ```
-## :bulb: 의존성 추가
+### :bulb: 의존성 추가
 ```bash
 npm i -D parcel-bundler
 ```
@@ -18,9 +19,9 @@ npm i -D parcel-bundler
 <summary> :bookmark_tabs: favicon.ico 만들기  </summary>
 <div markdown="1">
 
-## google 검색
-ico converter 입력
-#### [ico converter](https://www.icoconverter.com/)
+## favicon.ico 만들기
+### :bulb: 사이트 접속
+[ico converter](https://www.icoconverter.com/)
 ### :one: Image file
 파일 선택하여 원하는 이미지(.png, .jpeg) 첨부
 ### :two: Sizes
@@ -38,7 +39,7 @@ ico converter 입력
 npm i -D parcel-plugin-static-files-copy
 ```
 ### :seven: package.json 코드 입력
-static 이라는 폴더를 parcel 패키지가 dist 폴더에 붙여 넣어 준다.
+아래의 코드를 작성하면 static 이라는 폴더를 parcel 패키지가 `dist 폴더` 에 생성해준다.
 ```json
     "staticFiles": {
         "staticPath": "static"
@@ -52,7 +53,7 @@ static 이라는 폴더를 parcel 패키지가 dist 폴더에 붙여 넣어 준�
 
 
 <details>
-<summary> :bookmark_tabs: autoprefixer </summary>
+<summary> :bookmark_tabs: Autoprefixer </summary>
 <div markdown="1">
 
 ## 공급 업체 접두사 (Vender Prefix)
@@ -65,7 +66,8 @@ $ npm i -D postcss
 $ npm i -D autoprefixer
 ```
 ### :two: package.json 코드 입력
-`browserslist` 옵셥: 현재 npm 프로젝트에서 지원할 브라우저의 범위를 명시하는 용도이다. 그 명시를 Autoprefixer 패키지가 활용하게 된다.
+`browserslist` 옵션: 현재 npm 프로젝트에서 지원할 브라우저의 범위를 명시하는 용도이다. <br>
+그 명시를 Autoprefixer 패키지가 활용하게 된다.
 ```json
   "browserslist": [
     "> 1%",
@@ -108,7 +110,7 @@ module.exports = {
 }
 ```
 ### :four: 작동하는지 확인하기
-scss 파일에 `disply: flex`를 추가하고 개발자 도구를 열어 확인하면 다른 코드들이 추가된 것을 확인할 수 있다.
+scss 파일에 `display: flex`를 추가하고 개발자 도구를 열어 확인하면 다른 코드들이 추가된 것을 확인할 수 있다.
 </div>
 </details>
 
