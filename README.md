@@ -535,7 +535,8 @@ export defalut function random() {
   user.age = 22
   console.log('user', user)
   // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
-  conole.log('copyUser', copyUser)
+  
+  console.log('copyUser', copyUser)
   // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
   // 같은 메모리를 할당 받으므로 두개 모두 값이 바뀜
 ```
@@ -554,7 +555,7 @@ export defalut function random() {
   user.age = 22
   console.log('user', user)
   // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
-  conole.log('copyUser', copyUser)
+  console.log('copyUser', copyUser)
   // 출력: {name: 'Heropy',  age: 85, emails: Arrays(1)}
 ```
 방법 :two: - `얕은복사`
@@ -571,7 +572,7 @@ export defalut function random() {
   user.age = 22
   console.log('user', user)
   // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
-  conole.log('copyUser', copyUser)
+  console.log('copyUser', copyUser)
   // 출력: {name: 'Heropy',  age: 85, emails: Arrays(1)}
 ```
 방벙 :three: - `깊은복사(Deep copy)`<br>
@@ -608,7 +609,7 @@ lodash가 설치된 것을 확인 가능
   user.age = 22
   console.log('user', user)
   // 출력: {name: 'Heropy',  age: 22, emails: Arrays(1)}
-  conole.log('copyUser', copyUser)
+  console.log('copyUser', copyUser)
   // 출력: {name: 'Heropy',  age: 85, emails: Arrays(1)}
 ```
 </div>
@@ -1001,6 +1002,7 @@ console.log(str.match(regexp))
 <div markdown="1">
 
 #### 📋 정규표현식을 다루는 다양한 메소드(methods)들
+
 <table>
   <tr>
     <td>메소드</td>
@@ -1033,6 +1035,7 @@ console.log(str.match(regexp))
     <td>일치하는 문자열을 대체하고 대체된 문자열(String) 반환</td>
   </tr>
 </table>
+
 #### 📋 예제코드 1
 ```javascript
 const str = ` 
