@@ -123,5 +123,39 @@ scss 파일에 `display: flex`를 추가하고 개발자 도구를 열어 확인
 최신 버전 자바스크립트(ES6, ES7, ES8)에서 동작하지만 구형 버전(ES5)에서 동작하지 않을 수 있다. <br>
 `BABEL`을 통해서 구형 브라우저에서도 동작할 수 있도록 최신 버전의 코드를 구형 버전의 코드로 변환할 수 있다. <br>
 이를 프로젝트에 적용할 수 있다.
+### :one: 의존성 모듈 설치
+```
+npm i -D @babel/core @babel/preset-env
+npm i -D @babel/plugin-transform-runtime
+```
+### :two: 파일 생성
+`.babelrc.js` 파일 생성
+### :three: .babelrc.js 코드 작성
+```js
+module.exports = {
+    presets: ['@babel/preset-env'],
+    plugins: [
+        ['@babel/plugin-transform-runtime']
+    ]
+}
+```
+### :four: pakage.json 코드 추가
+```json
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+```
+### 비동기 문법이 작동 가능
+</div>
+</details>
+
+<details>
+<summary> :bookmark_tabs: 커맨드 라인 인터페이스(CLI) </summary>
+<div markdown="1">
+
+![parcel 페이지 접속](https://parceljs.org/) <br>
+![parcel 한국어판 페이지 접속](https://ko.parceljs.org/)
+
 </div>
 </details>
