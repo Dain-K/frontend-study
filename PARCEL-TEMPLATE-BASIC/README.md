@@ -154,8 +154,9 @@ module.exports = {
 <summary> :bookmark_tabs: 커맨드 라인 인터페이스(CLI) </summary>
 <div markdown="1">
 
-![parcel 페이지 접속](https://parceljs.org/) <br>
-![parcel 한국어판 페이지 접속](https://ko.parceljs.org/)
+## Parcel 사이트
+[parcel 페이지 접속](https://parceljs.org/) <br>
+[parcel 한국어판 페이지 접속](https://ko.parceljs.org/)
 
 </div>
 </details>
