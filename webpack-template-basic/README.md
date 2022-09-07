@@ -1,6 +1,7 @@
 <details>
 <summary> :bookmark_tabs: 프로젝트 생성  </summary>
 <div markdown="1">
+
 ## 프로젝트 시작하기
 ```
 npm init -y
@@ -9,7 +10,7 @@ npm init -y
 ```
 npm i -D webpack webpack-cli webpack-dev-server@next
 ```
-### :pushpin: webpack.config.js 파일 추가하기
+## webpack.config.js 파일 추가하기
 webpack-dev-server을 통헤서 개발서버를 오픈하려면 파슬 번들러와 달리 구성파일을 만들어주어야 한다. <br>
 파일에 직접적으로 구성 옵션을 작성해야 한다는 단점이 있다. <br>
 그래서 작은 프로젝트에서 보다 규모가 있는 프로젝트에서 많이 사용된다. <br>
